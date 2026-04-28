@@ -1,6 +1,15 @@
+# PYTHON
 [language-server.python]
 command = "pylsp"
 
 [[language]]
 name = "python"
 auto-format = false
+
+# RUST
+[language-server.hx-lsp]
+command = "hx-lsp"
+
+[[language]]
+name = "markdown"
+language-servers = [ "marksman", "markdown-oxide", "hx-lsp" ]
