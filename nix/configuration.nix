@@ -7,7 +7,7 @@
 let
   rich-presence-wrapper = import (fetchTarball "https://github.com/threadexio/rich-presence-wrapper/archive/f3e27737e4d90c57a8dcbc6b54ec2e23688e5b32.tar.gz");
 in
-
+  
 
 {
   imports =
@@ -62,7 +62,7 @@ in
     open = true;                                # needed for my model and arch
     # package = config.boot.kernelPackages.nvidiaPackages.beta; # ALSO needed for Wayland
   };
-
+  
   # Enable the KDE Plasma Desktop Environment.
   #services.displayManager.defaultSession = "plasmax11";
   #services.displayManager.sddm.enable = true;
@@ -71,7 +71,7 @@ in
   # enable Gnome desktop enviroment
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
-
+  
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -104,7 +104,7 @@ in
   users.users.sia = {
     isNormalUser = true;
     description = "sia";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
@@ -138,7 +138,14 @@ in
     gnome-tweaks
     rustup
     ghidra
-    python3
+
+    (python3.withPackages (p: with p; [
+      python-lsp-server
+      pwntools
+      pycrypto
+      pycryptodome
+    ]))
+    
     checksec
     gdb
     gef
@@ -154,7 +161,17 @@ in
     ocaml
     tinymist
     ghostty
-
+    presenterm
+    docker
+    docker-compose
+    tor-browser    
+    autoconf
+    automake
+    btop
+    audacity
+    openvpn
+    wireshark
+    nodejs_20     
     # ELF script
     (writeShellScriptBin "nix-patch" ''
       if [ -z "$1" ]; then
@@ -171,7 +188,7 @@ in
     # python packages
     (pkgs.python3.withPackages (ps: with ps; [ pwntools ]))
   ];
-
+     
   documentation.man.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -211,6 +228,7 @@ in
   nixpkgs.overlays = [rich-presence-wrapper.overlays.default rich-presence-wrapper.overlays.helix];
 
   virtualisation.podman.enable = true;
+  virtualisation.docker.enable = true;
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
@@ -223,5 +241,5 @@ in
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-
+  
 }
