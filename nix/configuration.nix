@@ -34,7 +34,10 @@ in
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
+  i18n.extraLocales = [
+    "el_GR.UTF-8/UTF-8"
+  ];
+    
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "el_GR.UTF-8";
     LC_IDENTIFICATION = "el_GR.UTF-8";
@@ -172,6 +175,7 @@ in
     openvpn
     wireshark
     nodejs_20     
+    clang-tools
     # ELF script
     (writeShellScriptBin "nix-patch" ''
       if [ -z "$1" ]; then
