@@ -176,6 +176,8 @@ in
     wireshark
     nodejs_20     
     clang-tools
+    gnumake42
+    
     # ELF script
     (writeShellScriptBin "nix-patch" ''
       if [ -z "$1" ]; then
