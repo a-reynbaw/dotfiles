@@ -4,9 +4,9 @@
 
 { config, pkgs, ... }:
 
-let
-  rich-presence-wrapper = import (fetchTarball "https://github.com/threadexio/rich-presence-wrapper/archive/f3e27737e4d90c57a8dcbc6b54ec2e23688e5b32.tar.gz");
-in
+# let
+#   rich-presence-wrapper = import (fetchTarball "https://git.31c0.org/threadexio/rich-presence-wrapper/archive/14aa9f028c95196e84c40163933e19e65319d10e.tar.gz");
+# in
   
 
 {
@@ -19,7 +19,7 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "hecate";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -116,10 +116,14 @@ in
 
   # Install firefox.
   programs.firefox.enable = true;
-
+  programs.nix-ld.enable = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "docker-28.5.2"
+  ];
+  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -141,6 +145,7 @@ in
     gnome-tweaks
     rustup
     ghidra
+    pavucontrol
 
     (python3.withPackages (p: with p; [
       python-lsp-server
@@ -177,6 +182,8 @@ in
     nodejs_20     
     clang-tools
     gnumake42
+    unzip
+    ghc
     
     # ELF script
     (writeShellScriptBin "nix-patch" ''
