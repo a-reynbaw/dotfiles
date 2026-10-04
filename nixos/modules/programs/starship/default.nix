@@ -10,7 +10,7 @@
 
       time = {
         disabled = false;
-        format = "[\[$time\]]($style)";
+        format = "[\\[$time\\]]($style)";
         style = "white";
         time_format = "%T";
       };
@@ -33,7 +33,7 @@
       };
 
       git_branch = {
-        format = "[git:\\($branch\\)]($style)";
+        format = "[git:($branch)]($style)";
         style = "yellow";
         truncation_length = 10;
         truncation_symbol = "…";
