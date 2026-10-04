@@ -23,14 +23,7 @@
     ];
 
     settings = {
-      theme = "amberwood";
-
-      gutters = [
-        "diff"
-        "spacer"
-        "line-numbers"
-        "spacer"
-      ];
+      theme = "mellow";
 
       editor = {
         line-number = "relative";
@@ -90,6 +83,7 @@
         })
         [
           ./themes/sonokai_default.toml
+          ./themes/mellow_transparent.toml
         ]
     );
   };

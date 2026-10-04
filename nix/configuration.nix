@@ -10,10 +10,10 @@
   
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  # imports =
+  #   [ # Include the results of the hardware scan.
+  #     ./hardware-configuration.nix
+  #   ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -154,7 +154,7 @@
     qemu
     file
     binutils
-    ida-free
+    # ida-free
     ocaml
     ghostty
     presenterm
@@ -171,6 +171,7 @@
     clang-tools
     gnumake42
     unzip
+    claude-code
     
     # ELF script
     (writeShellScriptBin "nix-patch" ''
