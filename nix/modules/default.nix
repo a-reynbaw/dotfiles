@@ -1,5 +1,5 @@
 {
   imports = [
-    ./programs/helix
+    ./programs
   ];
 }
