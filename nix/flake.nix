@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager/release-26.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rpw.url = "git+https://git.31c0.org/threadexio/rich-presence-wrapper";
@@ -19,7 +19,6 @@
            }
          ./configuration.nix
          ./hardware-configuration.nix
-          ./modules
           home-manager.nixosModules.default
           {
             home-manager = {

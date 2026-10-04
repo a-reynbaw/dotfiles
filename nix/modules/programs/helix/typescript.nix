@@ -8,7 +8,7 @@
           name = "typescript";
 
           language-servers = [
-            "typescript-language-serve"
+            "typescript-language-server"
             "rich-presence-wrapper"
           ];
         }
@@ -16,7 +16,7 @@
           name = "javascript";
 
           language-servers = [
-            "typescript-language-serve"
+            "typescript-language-server"
             "rich-presence-wrapper"
           ];
         }
