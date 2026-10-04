@@ -146,17 +146,7 @@
     rustup
     ghidra
     pavucontrol
-
-    (python3.withPackages (p: with p; [
-      python-lsp-server
-      pwntools
-      pycrypto
-      pycryptodome
-    ]))
-    
     checksec
-    gdb
-    gef
     patchelf
     ffuf
     seclists
@@ -164,10 +154,8 @@
     qemu
     file
     binutils
-    gcc
     ida-free
     ocaml
-    tinymist
     ghostty
     presenterm
     docker
@@ -179,11 +167,10 @@
     audacity
     openvpn
     wireshark
-    nodejs_20     
+    # nodejs_20     
     clang-tools
     gnumake42
     unzip
-    ghc
     
     # ELF script
     (writeShellScriptBin "nix-patch" ''
@@ -238,7 +225,7 @@
 
   services.flatpak.enable = true;
 
-  nixpkgs.overlays = [rich-presence-wrapper.overlays.default rich-presence-wrapper.overlays.helix];
+  # nixpkgs.overlays = [inputs.rpw.overlays.default];
 
   virtualisation.podman.enable = true;
   virtualisation.docker.enable = true;

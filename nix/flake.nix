@@ -19,6 +19,7 @@
            }
          ./configuration.nix
          ./hardware-configuration.nix
+          ./modules
           home-manager.nixosModules.default
           {
             home-manager = {
