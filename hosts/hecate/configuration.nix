@@ -11,7 +11,7 @@
 
 {
   imports = [
-    ./modules/nvidia
+    ./modules/nixos/nvidia
   ];
 
   # Bootloader.
@@ -53,7 +53,7 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  # nvidia drivers: see ./modules/nvidia/default.nix
+  # nvidia drivers: see ./modules/nixos/nvidia/default.nix
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.defaultSession = "plasma";
