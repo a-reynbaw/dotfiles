@@ -5,7 +5,6 @@
 
   users.users.a-reynbaw.home = "/Users/a-reynbaw";
 
-  # nix-darwin's /etc/zprofile doesn't run path_helper, so /etc/paths.d isn't read.
   environment.systemPath = [
     "/opt/homebrew/bin"
     "/opt/homebrew/sbin"
