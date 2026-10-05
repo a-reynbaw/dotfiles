@@ -24,6 +24,9 @@ in
   programs.ghostty = {
     enable = true;
 
+    # nixpkgs only builds ghostty from source on Linux; use the upstream binary on macOS.
+    package = if pkgs.stdenv.hostPlatform.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
+
     settings = {
       # background-opacity = 0.8;
       background-blur = true;

@@ -41,6 +41,7 @@
     clang-tools
     man-pages
     man-pages-posix
+  ] ++ lib.optionals stdenv.hostPlatform.isLinux [
     gdb
     gef
     strace
