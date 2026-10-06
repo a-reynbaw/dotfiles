@@ -11,7 +11,7 @@
 
 {
   imports = [
-    ./modules/nixos/nvidia
+    ../../modules/nixos/nvidia
   ];
 
   # Bootloader.
