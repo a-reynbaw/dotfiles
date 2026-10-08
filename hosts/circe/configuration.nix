@@ -3,7 +3,10 @@
 {
   networking.hostName = "circe";
 
+  system.defaults.NSGlobalDomain._HIHideMenuBar = true;
+
   users.users.a-reynbaw.home = "/Users/a-reynbaw";
+  system.primaryUser = "a-reynbaw";
 
   environment.systemPath = [
     "/opt/homebrew/bin"
