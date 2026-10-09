@@ -3,6 +3,6 @@
 {
   imports = [
     ../../home.nix
-    ../home/programs/keyboard/defaut.nix
+    ../home/programs/plasma/default.nix
   ];
 }

@@ -11,6 +11,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     darwin = {
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,6 +28,7 @@
     nixpkgs,
     rpw,
     home-manager,
+    plasma-manager,
     darwin,
     ...
   }@inputs: {
@@ -39,6 +46,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = { inherit inputs; };
+              sharedModules = [ plasma-manager.homeModules.plasma-manager ];
               users.sia = ./modules/nixos/home.nix;
             };
           }
