@@ -5,6 +5,7 @@
     ./bash.nix
     ./c.nix
     ./haskell.nix
+    ./latex.nix
     ./markdown.nix
     ./nix.nix
     ./prolog.nix
