@@ -22,6 +22,8 @@
     };
   };
 
-  home.packages = with pkgs; [];
+  home.packages = with pkgs; [
+    tinymist
+  ];
 }
 
