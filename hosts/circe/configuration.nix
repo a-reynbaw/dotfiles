@@ -15,6 +15,9 @@
     "/Applications/Wireshark.app/Contents/MacOS"
   ];
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.enable = false;
   system.stateVersion = 6;

@@ -16,14 +16,14 @@
 
       language-server = {
         "texlab" = {
-          command = "${lib.getExe' pkgs.texlab}";
+          command = "${lib.getExe pkgs.texlab}";
         };
       };
       
     };
   };
 
-  home.pkgs = with pkgs; [
+  home.packages = with pkgs; [
     texlab
   ];
 }
