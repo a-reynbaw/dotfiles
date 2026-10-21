@@ -4,11 +4,20 @@
 let
   python3 = pkgs.python3.withPackages (
     p: with p; [
+      # lsps
       ty
       ruff
 
+      # ctfs
       virtualenv
       pwntools
+
+      # # quantum
+      # pennylane
+
+      # math-plotting
+      matplotlib
+      jax
     ]
   );
 in
