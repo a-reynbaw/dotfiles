@@ -114,7 +114,7 @@
   nixpkgs.config.permittedInsecurePackages = [
     "docker-28.5.2"
   ];
-  
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [

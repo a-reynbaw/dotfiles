@@ -60,6 +60,7 @@
 
   home.packages = with pkgs; [
     rustup
+    sqlx-cli
   ];
 }
 

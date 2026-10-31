@@ -22,8 +22,16 @@
     };
   };
 
+  # Allow home-manager to install and index per-user fonts (needed below).
+  fonts.fontconfig.enable = true;
+
   home.packages = with pkgs; [
     tinymist
+
+    # Fonts needed by the modern-cv typst template (cv.typst).
+    source-sans
+    source-sans-pro
+    font-awesome
   ];
 }
 
