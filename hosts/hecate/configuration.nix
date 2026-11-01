@@ -98,7 +98,7 @@
   users.users.sia = {
     isNormalUser = true;
     description = "sia";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
@@ -163,6 +163,16 @@
     gnumake42
     unzip
     claude-code
+    flex
+    bison
+    bc
+    pkg-config
+    elfutils
+    elfutils.dev
+    zlib
+    zlib.dev
+    openssl
+    openssl.dev
     
     # ELF script
     (writeShellScriptBin "nix-patch" ''
@@ -221,17 +231,21 @@
 
   virtualisation.podman.enable = true;
   virtualisation.docker.enable = true;
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      package = pkgs.qemu_kvm;
-      runAsRoot = true;
-      swtpm.enable = true;
-    };
-  };
+  # virtualisation.libvirtd = {
+  #   enable = true;
+  #   qemu = {
+  #     package = pkgs.qemu_kvm;
+  #     runAsRoot = true;
+  #     swtpm.enable = true;
+  #   };
+  # };
   # virtualisation.virt-manager.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  
+  environment.variables.PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig:/run/current-system/sw/share/pkgconfig";
+  environment.variables.CPATH = "${pkgs.elfutils.dev}/include:${pkgs.zlib.dev}/include:${pkgs.openssl.dev}/include";
+  environment.variables.LIBRARY_PATH = "${pkgs.elfutils.dev}/lib:${pkgs.zlib.dev}/lib:${pkgs.openssl.dev}/lib";
+
+
 }
