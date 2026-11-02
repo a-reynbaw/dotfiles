@@ -1,4 +1,4 @@
-{ config, pkgs, lib }:
+{ config, pkgs, lib, ... }:
 
 {
   boot.extraModprobeConfig = ''
@@ -16,14 +16,13 @@
     };
   };
 
-  enviroment = {
-    sessionVaribles = {
+  environment = {
+    sessionVariables = {
       LIBVIRT_DEFAULT_URI = "qemu:///system";
     };
 
     systemPackages = with pkgs; [
       virt-manager
-      virt-clone-cheap
       seabios
     ];
   };

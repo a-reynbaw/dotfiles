@@ -12,6 +12,7 @@
 {
   imports = [
     ../../modules/nixos/nvidia
+    ../../modules/nixos/virtualisation/kvm
   ];
 
   # Bootloader.
@@ -59,6 +60,7 @@
   services.displayManager.defaultSession = "plasma";
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm.wayland.enable = false;
   # services.displayManager.defaultSession = "plasmax11"; # fallback if Wayland session misbehaves
 
   # gnome desktop environment (disabled in favor of KDE Plasma)
@@ -224,7 +226,7 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
-
+  
   services.flatpak.enable = true;
 
   # nixpkgs.overlays = [inputs.rpw.overlays.default];
