@@ -4,6 +4,7 @@
   imports = [
     ./bash.nix
     ./c.nix
+    ./coq.nix
     ./haskell.nix
     ./latex.nix
     ./markdown.nix

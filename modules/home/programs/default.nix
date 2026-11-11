@@ -5,5 +5,6 @@
     ./bash
     ./starship
     ./claude-code
+    ./learnharness
   ];
 }
