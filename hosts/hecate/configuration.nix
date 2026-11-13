@@ -175,6 +175,7 @@
     zlib.dev
     openssl
     openssl.dev
+    lsd
     
     # ELF script
     (writeShellScriptBin "nix-patch" ''

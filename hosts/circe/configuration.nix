@@ -15,6 +15,10 @@
     "/Applications/Wireshark.app/Contents/MacOS"
   ];
 
+  environment.systemPackages = with pkgs; [
+    lsd
+  ];
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
