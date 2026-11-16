@@ -71,6 +71,7 @@
   services.xserver.xkb = {
     layout = "us,gr";
     variant = "";
+
     options = "grp:alt_shift_toggle";
   };
 
@@ -136,7 +137,6 @@
     dconf
     dconf-editor
     gnome-tweaks
-    rustup
     ghidra
     pavucontrol
     checksec

@@ -47,7 +47,7 @@
               useUserPackages = true;
               extraSpecialArgs = { inherit inputs; };
               sharedModules = [ plasma-manager.homeModules.plasma-manager ];
-              users.sia = ./modules/nixos/home.nix;
+              users.sia = ./hosts/hecate/home.nix;
             };
           }
        ];
