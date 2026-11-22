@@ -35,6 +35,9 @@
             unit = "  ";
           };
 
+          # One Rocq checker at a time: coq-lsp and vsrocq both elaborate the
+          # whole file, so listing both doubles the kernel work and reports
+          # every error twice. Swap "coq-lsp" for "vsrocq" to try the other.
           language-servers = [
             "coq-lsp"
             "rich-presence-wrapper"
@@ -43,10 +46,59 @@
       ];
 
       language-server = {
-        # coq-lsp sits under coqPackages, not at top level, and sets no
+        # coq-lsp sits under rocqPackages, not at top level, and sets no
         # meta.mainProgram, so the binary has to be named explicitly.
         "coq-lsp" = {
-          command = "${lib.getExe' pkgs.coqPackages.coq-lsp "coq-lsp"}";
+          command = "${lib.getExe' pkgs.rocqPackages.coq-lsp "coq-lsp"}";
+        };
+
+        # The server half of the VsRocq VS Code extension. It is a plain LSP
+        # server, so helix can drive it, but the proof view, stepping and
+        # queries all ride on vsrocq's own protocol extensions, which helix
+        # does not speak: here it is worth diagnostics, hover, completion,
+        # goto-definition, document symbols and folding, and no goals.
+        "vsrocq" = {
+          command = "${lib.getExe' pkgs.rocqPackages.vsrocq-language-server "vsrocqtop"}";
+
+          # vsrocqtop parses this whole record at once, both from
+          # initializationOptions and from the didChangeConfiguration helix
+          # sends after it, and silently drops it if a required field is
+          # missing - hence every field below, even the ones left at the
+          # extension's own default.
+          #
+          # mode = 1 is Continuous; the default 0 is Manual, which checks
+          # nothing until the client asks it to step, so under helix it would
+          # sit there reporting no errors at all.
+          config = {
+            proof = {
+              delegation = "None";
+              workers = 1;
+              mode = 1;
+              block = true;
+              pointInterpretationMode = 0;
+            };
+
+            goals = {
+              messages.full = true;
+              ppmode = "Pp";
+            };
+
+            completion = {
+              enable = false;
+              algorithm = 1;
+              unificationLimit = 100;
+            };
+
+            diagnostics = {
+              enable = true;
+              full = false;
+            };
+
+            # In gigabytes.
+            memory.limit = 4;
+
+            interrupt.preempt = false;
+          };
         };
       };
     };
@@ -54,6 +106,10 @@
 
   home.packages = with pkgs; [
     rocq-core
-    coqPackages.coq-lsp
+    rocqPackages.coq-lsp
+
+    # Puts vsrocqtop on PATH, which is all the VS Code extension needs: with
+    # vsrocq.path left empty it looks the binary up there itself.
+    rocqPackages.vsrocq-language-server
   ];
 }
